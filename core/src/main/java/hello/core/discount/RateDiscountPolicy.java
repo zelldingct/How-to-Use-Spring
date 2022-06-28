@@ -1,5 +1,6 @@
 package hello.core.discount;
 
+import hello.core.member.Grade;
 import hello.core.member.Member;
 
 public class RateDiscountPolicy implements DiscountPolicy  {
@@ -8,7 +9,13 @@ public class RateDiscountPolicy implements DiscountPolicy  {
 
     @Override
     public int discount(Member member, int price) {
-        return 0;
+
+        if (member.getGrade() == Grade.VIP) {
+            return price * discountPercent / 100;
+        } else {
+            return 0;
+        }
+
     }
 
 }
