@@ -10,11 +10,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository;
+    private  MemberRepository memberRepository;
     //private final DiscountPolicy discountPolicy = new DiscountPolicy();
-    private final DiscountPolicy discountPolicy;
+    private  DiscountPolicy discountPolicy;
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        System.out.println("memberRepository =" + memberRepository);
+        this.memberRepository = memberRepository;
+    }
 
     @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+        System.out.println("discountPolicy = " + discountPolicy);
+    }
+
+    @Autowired//생성자가 하나일때는 autowired가 필요가 없다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
